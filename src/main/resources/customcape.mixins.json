@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.example.customcape.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "refmap": "customcape.refmap.json",
+  "mixins": [],
+  "client": [
+    "AbstractClientPlayerMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

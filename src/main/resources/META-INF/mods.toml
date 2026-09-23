@@ -1,0 +1,40 @@
+modLoader="javafml"
+loaderVersion="[47,)"
+license="MIT"
+issueTrackerURL=""
+
+[[mods]]
+modId="customall"
+version="1.0.0"
+displayName="Custom All-in-One (Self)"
+authors="You"
+description='''
+四合一纯客户端模组：自定义披风 / 自定义皮肤 / 角色特效（发光、彩名、光环）/ 扇动能量翅膀。
+全部效果仅自己可见，服务器零感知。
+配置与贴图路径和原独立模组完全一致：config/CustomCape、config/CustomSkin、config/CustomFX、config/CustomWings。
+指令：/customcape、/customskin、/customfx、/customwings。
+'''
+displayTest="IGNORE_ALL_VERSION"
+
+[[mixins]]
+config="customcape.mixins.json"
+
+[[mixins]]
+config="customskin.mixins.json"
+
+[[mixins]]
+config="customfx.mixins.json"
+
+[[dependencies.customall]]
+    modId="forge"
+    mandatory=true
+    versionRange="[47,)"
+    ordering="NONE"
+    side="CLIENT"
+
+[[dependencies.customall]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.20.1,1.21)"
+    ordering="NONE"
+    side="CLIENT"

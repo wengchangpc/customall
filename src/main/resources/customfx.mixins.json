@@ -1,0 +1,13 @@
+{
+    "required": true,
+    "minVersion": "0.8",
+    "package": "com.example.customfx.mixin",
+    "compatibilityLevel": "JAVA_17",
+    "refmap": "customfx.refmap.json",
+    "client": [
+        "EntityMixin"
+    ],
+    "injectors": {
+        "defaultRequire": 1
+    }
+}
