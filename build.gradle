@@ -26,7 +26,9 @@ java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
 mixin {
     add sourceSets.main, "${project.archives_base_name}.refmap.json"
-    config "${project.archives_base_name}.mixins.json"
+    config "customcape.mixins.json"
+    config "customskin.mixins.json"
+    config "customfx.mixins.json"
 }
 
 minecraft {
@@ -39,7 +41,7 @@ minecraft {
             property 'mixin.env.remapRefMap', 'true'
             property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
             mods {
-                customcape {
+                customall {
                     source sourceSets.main
                 }
             }
