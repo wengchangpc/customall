@@ -14,12 +14,15 @@ import java.util.Map;
  * vivid=true/false       增艳开关（加载贴图时提饱和提亮度）
  * gloss=true/false       流光镀层开关（全亮度光泽叠加）
  * glossAlpha=0.0~1.0     流光强度
+ * applyToAll=true/false   作用范围：true=所有玩家同款，false=仅自己
  */
 public final class CapeConfig {
     public static boolean fpCape = true;
     public static boolean vivid = true;
     public static boolean gloss = true;
     public static float glossAlpha = 0.35F;
+    /** 作用范围：true=应用到所有玩家，false=仅自己 */
+    public static boolean applyToAll = true;
 
     private CapeConfig() {
     }
@@ -43,6 +46,7 @@ public final class CapeConfig {
         fpCape = parseBool(kv.get("fpcape"), true);
         vivid = parseBool(kv.get("vivid"), true);
         gloss = parseBool(kv.get("gloss"), true);
+        applyToAll = parseBool(kv.get("applytoall"), true);
         try {
             glossAlpha = Math.max(0.0F, Math.min(1.0F, Float.parseFloat(kv.getOrDefault("glossalpha", "0.35"))));
         } catch (Exception e) {
@@ -59,11 +63,13 @@ public final class CapeConfig {
                     # vivid: 增艳(提饱和提亮度)开关 (true/false)
                     # gloss: 流光镀层开关 (true/false)
                     # glossAlpha: 流光强度 0.0~1.0
+                    # applyToAll: 作用范围 (true=所有玩家, false=仅自己)
                     fpCape=%s
                     vivid=%s
                     gloss=%s
                     glossAlpha=%s
-                    """.formatted(fpCape, vivid, gloss, glossAlpha), StandardCharsets.UTF_8);
+                    applyToAll=%s
+                    """.formatted(fpCape, vivid, gloss, glossAlpha, applyToAll), StandardCharsets.UTF_8);
         } catch (Exception ignored) {
         }
     }

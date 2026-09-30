@@ -29,7 +29,7 @@ public class GlossLayer extends RenderLayer<AbstractClientPlayer, PlayerModel<Ab
     public void render(PoseStack poseStack, MultiBufferSource buffer, int packedLight,
                        AbstractClientPlayer player, float limbSwing, float limbSwingAmount,
                        float partialTick, float ageInTicks, float netHeadYaw, float headPitch) {
-        if (player != Minecraft.getInstance().player) return;   // 只渲染自己
+        if (!SkinConfig.applyToAll && player != Minecraft.getInstance().player) return;   // 作用范围
         if (!SkinConfig.gloss) return;
         if (player.isInvisible()) return;
         if (!SkinTextureManager.isAvailable()) return;          // 未加载自定义皮肤时不镀

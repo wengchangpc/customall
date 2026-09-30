@@ -36,7 +36,7 @@ public class CapeGlossLayer extends RenderLayer<AbstractClientPlayer, PlayerMode
     public void render(PoseStack ps, MultiBufferSource buffer, int packedLight,
                        AbstractClientPlayer player, float limbSwing, float limbSwingAmount,
                        float partialTick, float ageInTicks, float netHeadYaw, float headPitch) {
-        if (player != Minecraft.getInstance().player) return;   // 只渲染自己
+        if (!CapeConfig.applyToAll && player != Minecraft.getInstance().player) return;   // 作用范围
         if (!CapeConfig.gloss) return;
         if (!CapeTextureManager.isAvailable()) return;          // 未加载自定义披风时不镀
         if (player.isInvisible() || player.isSpectator()) return;

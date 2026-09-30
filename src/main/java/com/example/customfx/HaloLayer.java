@@ -31,6 +31,7 @@ public class HaloLayer extends RenderLayer<AbstractClientPlayer, PlayerModel<Abs
                        float limbSwing, float limbSwingAmount, float partialTick, float ageInTicks,
                        float netHeadYaw, float headPitch) {
         if (!FxConfig.halo || player.isInvisible()) return;
+        if (!FxConfig.applyToAll && player != net.minecraft.client.Minecraft.getInstance().player) return;
 
         float t = player.tickCount + partialTick;
         int rgb = FxConfig.haloColor((long) (t * 50.0F));

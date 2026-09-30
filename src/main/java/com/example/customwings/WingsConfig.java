@@ -20,6 +20,8 @@ public class WingsConfig {
     /** 流光镀层（全亮度自发光脉动） */
     public static boolean gloss = true;
     public static float glossAlpha = 0.35F;
+    /** 作用范围：true=所有玩家都有翅膀，false=仅自己 */
+    public static boolean applyToAll = true;
 
     public static Path file() {
         return FMLPaths.CONFIGDIR.get().resolve("CustomWings").resolve("settings.txt");
@@ -46,6 +48,7 @@ public class WingsConfig {
                     case "flapSpeed" -> { try { flapSpeed = Float.parseFloat(v); } catch (NumberFormatException ignored) {} }
                     case "gloss" -> gloss = Boolean.parseBoolean(v);
                     case "glossAlpha" -> { try { glossAlpha = Float.parseFloat(v); } catch (NumberFormatException ignored) {} }
+                    case "applyToAll" -> applyToAll = Boolean.parseBoolean(v);
                 }
             }
         } catch (IOException e) {
@@ -66,7 +69,8 @@ public class WingsConfig {
                     "flapSpeed=" + flapSpeed,
                     "fp=" + fp,
                     "gloss=" + gloss,
-                    "glossAlpha=" + glossAlpha
+                    "glossAlpha=" + glossAlpha,
+                    "applyToAll=" + applyToAll
             );
             Files.write(f, lines);
         } catch (IOException e) {

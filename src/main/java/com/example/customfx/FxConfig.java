@@ -21,6 +21,8 @@ public class FxConfig {
     public static String haloColorMode = "rainbow";
     /** 名字颜色：rainbow 或 #RRGGBB */
     public static String nameColorMode = "rainbow";
+    /** 作用范围：true=特效应用到所有玩家，false=仅自己 */
+    public static boolean applyToAll = true;
 
     public static Path file() {
         return Paths.get("config", "CustomFX", "settings.txt");
@@ -46,6 +48,7 @@ public class FxConfig {
                     case "name" -> nameColorEnabled = Boolean.parseBoolean(v);
                     case "halocolor" -> haloColorMode = v;
                     case "namecolor" -> nameColorMode = v;
+                    case "applytoall" -> applyToAll = Boolean.parseBoolean(v);
                     default -> { }
                 }
             }
@@ -58,12 +61,14 @@ public class FxConfig {
                 # CustomFX 配置文件（仅自己可见的角色特效）
                 # glow / halo / name: true 或 false
                 # haloColor / nameColor: rainbow（彩虹循环）或十六进制 #RRGGBB
+                # applyToAll: 作用范围 (true=所有玩家, false=仅自己)
                 glow=%s
                 halo=%s
                 name=%s
                 haloColor=%s
                 nameColor=%s
-                """.formatted(glow, halo, nameColorEnabled, haloColorMode, nameColorMode);
+                applyToAll=%s
+                """.formatted(glow, halo, nameColorEnabled, haloColorMode, nameColorMode, applyToAll);
         try {
             Files.createDirectories(file().getParent());
             Files.write(file(), content.getBytes(StandardCharsets.UTF_8));

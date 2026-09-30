@@ -13,11 +13,14 @@ import java.util.Map;
  * gloss=true/false        流光镀层开关（模型表面叠加全亮度光泽）
  * glossAlpha=0.0~1.0      流光强度
  * vivid=true/false        增艳开关（加载贴图时提饱和提亮度）
+ * applyToAll=true/false   作用范围：true=所有玩家同款，false=仅自己
  */
 public final class SkinConfig {
     public static boolean gloss = true;
     public static float glossAlpha = 0.30F;
     public static boolean vivid = true;
+    /** 作用范围：true=应用到所有玩家，false=仅自己 */
+    public static boolean applyToAll = true;
 
     private SkinConfig() {
     }
@@ -40,6 +43,7 @@ public final class SkinConfig {
         }
         gloss = parseBool(kv.get("gloss"), true);
         vivid = parseBool(kv.get("vivid"), true);
+        applyToAll = parseBool(kv.get("applytoall"), true);
         try {
             glossAlpha = Math.max(0.0F, Math.min(1.0F, Float.parseFloat(kv.getOrDefault("glossalpha", "0.30"))));
         } catch (Exception e) {
@@ -55,10 +59,12 @@ public final class SkinConfig {
                     # gloss: 流光镀层开关 (true/false)
                     # glossAlpha: 流光强度 0.0~1.0
                     # vivid: 增艳(提饱和提亮度)开关 (true/false)
+                    # applyToAll: 作用范围 (true=所有玩家, false=仅自己)
                     gloss=%s
                     glossAlpha=%s
                     vivid=%s
-                    """.formatted(gloss, glossAlpha, vivid), StandardCharsets.UTF_8);
+                    applyToAll=%s
+                    """.formatted(gloss, glossAlpha, vivid, applyToAll), StandardCharsets.UTF_8);
         } catch (Exception ignored) {
         }
     }

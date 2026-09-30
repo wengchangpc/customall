@@ -102,7 +102,8 @@ public class CustomAllMod {
     private void onRenderNameTag(RenderNameTagEvent event) {
         if (!FxConfig.nameColorEnabled) return;
         Minecraft mc = Minecraft.getInstance();
-        if (event.getEntity() != mc.player) return;
+        if (!(event.getEntity() instanceof net.minecraft.world.entity.player.Player player)) return;
+        if (!FxConfig.applyToAll && player != mc.player) return;
 
         long time = System.currentTimeMillis();
         int rgb = FxConfig.nameColor(time);
@@ -163,6 +164,14 @@ public class CustomAllMod {
                             ? "[CustomCape] 流光镀层已开启！暗处也会发光。"
                             : "[CustomCape] 流光镀层已关闭。"), false);
                 return 1;
+            }))
+            .then(Commands.literal("scope").executes(ctx -> {
+                CapeConfig.applyToAll = !CapeConfig.applyToAll;
+                CapeConfig.save();
+                ctx.getSource().sendSuccess(() -> Component.literal(
+                        "[CustomCape] 作用范围：" + (CapeConfig.applyToAll
+                                ? "全部玩家（所有人都会披上你的披风）" : "仅自己")), false);
+                return 1;
             })));
     }
 
@@ -184,6 +193,14 @@ public class CustomAllMod {
                 SkinConfig.save();
                 ctx.getSource().sendSuccess(() -> Component.literal(
                         SkinConfig.gloss ? "[CustomSkin] 流光镀层已开启！" : "[CustomSkin] 流光镀层已关闭。"), false);
+                return 1;
+            }))
+            .then(Commands.literal("scope").executes(ctx -> {
+                SkinConfig.applyToAll = !SkinConfig.applyToAll;
+                SkinConfig.save();
+                ctx.getSource().sendSuccess(() -> Component.literal(
+                        "[CustomSkin] 作用范围：" + (SkinConfig.applyToAll
+                                ? "全部玩家（所有人都会显示你的皮肤）" : "仅自己")), false);
                 return 1;
             }))
             .then(Commands.literal("vivid").executes(ctx -> {
@@ -227,6 +244,14 @@ public class CustomAllMod {
                 FxConfig.save();
                 ctx.getSource().sendSuccess(() -> Component.literal(
                         "[CustomFX] 彩色名字：" + (FxConfig.nameColorEnabled ? "开" : "关")), false);
+                return 1;
+            }))
+            .then(Commands.literal("scope").executes(ctx -> {
+                FxConfig.applyToAll = !FxConfig.applyToAll;
+                FxConfig.save();
+                ctx.getSource().sendSuccess(() -> Component.literal(
+                        "[CustomFX] 作用范围：" + (FxConfig.applyToAll
+                                ? "全部玩家（发光描边与彩名对所有人生效）" : "仅自己")), false);
                 return 1;
             })));
     }
@@ -286,6 +311,14 @@ public class CustomAllMod {
                         WingsConfig.gloss
                             ? "[CustomWings] 流光镀层已开启！暗处也会发光。"
                             : "[CustomWings] 流光镀层已关闭。"), false);
+                return 1;
+            }))
+            .then(Commands.literal("scope").executes(ctx -> {
+                WingsConfig.applyToAll = !WingsConfig.applyToAll;
+                WingsConfig.save();
+                ctx.getSource().sendSuccess(() -> Component.literal(
+                        "[CustomWings] 作用范围：" + (WingsConfig.applyToAll
+                                ? "全部玩家（所有人都会长翅膀）" : "仅自己")), false);
                 return 1;
             }))
             .then(Commands.literal("reload").executes(ctx -> {

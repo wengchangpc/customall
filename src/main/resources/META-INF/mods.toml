@@ -5,12 +5,12 @@ issueTrackerURL=""
 
 [[mods]]
 modId="customall"
-version="1.0.0"
+version="1.1.0"
 displayName="Custom All-in-One (Self)"
 authors="You"
 description='''
 四合一纯客户端模组：自定义披风 / 自定义皮肤 / 角色特效（发光、彩名、光环）/ 扇动能量翅膀。
-全部效果仅自己可见，服务器零感知。
+默认作用到所有玩家（applyToAll=true），可用 /customxxx scope 切回仅自己。所有效果都只在你的客户端显示，服务器零感知。
 配置与贴图路径和原独立模组完全一致：config/CustomCape、config/CustomSkin、config/CustomFX、config/CustomWings。
 指令：/customcape、/customskin、/customfx、/customwings。
 '''

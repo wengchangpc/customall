@@ -65,7 +65,7 @@ public class WingsLayer extends RenderLayer<AbstractClientPlayer, PlayerModel<Ab
                        AbstractClientPlayer player, float limbSwing, float limbSwingAmount,
                        float partialTick, float ageInTicks, float netHeadYaw, float headPitch) {
         // 核心规则：只画自己
-        if (player != Minecraft.getInstance().player) return;
+        if (!WingsConfig.applyToAll && player != Minecraft.getInstance().player) return;
         if (!WingsConfig.enabled) return;
         if (player.isInvisible()) return;
 
